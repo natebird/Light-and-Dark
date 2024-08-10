@@ -10,10 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @AppStorage("currentColorScheme") var currentColorScheme: ColorSchemeOption = .none
     @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         NavigationStack {
             List {
-                Section(header: Text(String(localized: "Appearance", comment: "Section heading"))) {
+                Section(header: Text(String(localized: "preferredColorScheme", comment: "Section heading"))) {
                     Picker("Color Scheme", selection: $currentColorScheme) {
                         ForEach(ColorSchemeOption.allCases) { option in
                             Text(option.rawValue).tag(option)
@@ -23,7 +24,10 @@ struct ContentView: View {
                     .padding()
                 }
                 .navigationTitle(String(localized: "App Theme", comment: "Screen Title"))
-                Text(colorScheme == .dark ? "Dark Mode" : "Light Mode")
+                
+                Section(header: Text(String(localized: "colorScheme", comment: "Section heading"))) {
+                    Text(colorScheme == .dark ? "Dark Mode" : "Light Mode")
+                }
 
             }
         }
