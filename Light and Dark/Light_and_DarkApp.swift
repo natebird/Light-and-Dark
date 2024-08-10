@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Light_and_DarkApp: App {
+    @AppStorage("currentColorScheme") var currentColorScheme = ColorSchemeOption.none
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(currentColorScheme.toColorScheme())
         }
     }
 }

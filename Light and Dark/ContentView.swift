@@ -8,17 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("currentColorScheme") var currentColorScheme: ColorSchemeOption = .none
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                Section(header: Text(String(localized: "Appearance", comment: "Section heading"))) {
+                    Picker("Color Scheme", selection: $currentColorScheme) {
+                        ForEach(ColorSchemeOption.allCases) { option in
+                            Text(option.rawValue).tag(option)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                }
+                .navigationTitle(String(localized: "App Theme", comment: "Screen Title"))
+                Text(colorScheme == .dark ? "Dark Mode" : "Light Mode")
+
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
+    @Previewable @AppStorage("currentColorScheme") var colorScheme: ColorSchemeOption = .none
     ContentView()
+        .preferredColorScheme(colorScheme.toColorScheme())
 }
