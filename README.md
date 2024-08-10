@@ -15,4 +15,6 @@ This is an example application showing how I think I should be able to set Light
 * Change the app setting to "Light". Change the app setting to "System" (`.none`). The `preferedColorScheme` value will remain in "Light" mode regardless of the System setting. The expectation is that the app colorScheme should change to the System setting when the app setting is set to `.none`.
 * Change the app setting to "Dark". Change the app setting to "System" (`.none`). The `preferedColorScheme` value will remain in "Dark" mode regardless of the System setting. The expectation is that the app colorScheme should change to the System setting when the app setting is set to `.none`.
 
-**Note:** If the app is forced quit and relaunched, the system setting will be correctly applied again.
+**Notes**
+* If the app is forced quit and relaunched, the system setting will be correctly applied again.
+* The toggle works correctly in the SwiftUI preview - sort of. If the preview appearance settings are not enabled then you can switch between light, dark, and system and it seems to work as expected. If the preview setting is enabled then the switch will not work at all, the preview setting overrides any app setting.
